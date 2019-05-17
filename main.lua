@@ -14,7 +14,7 @@ function toggleGhost(bool)
     else
         removeEventHandler('onClientRender', root, updateZ)
     end
-    localVehicle.collisions = not enabled
+    triggerServerEvent('onClientToggleGhost', localVehicle)
 end
 
 function handleGhostKey(key, keyState)
@@ -26,14 +26,13 @@ function handleGhostKey(key, keyState)
         end
     end
 end
-bindKey(GHOST_KEY, 'both', handleGhostKey)
 
 function newVehicle(vehicle, seat)
     if seat == 0 then
         localVehicle = vehicle
         addEventHandler('onClientVehicleExplode', localVehicle, noVehicle)
         addEventHandler('onClientElementDestroy', localVehicle, noVehicle)
-        addEventHandler('onClientVehicleStartExit', localVehicle, exitVehicle)
+        addEventHandler('onClientVehicleStartExit', localVehicle, noVehicle)
 
     end
 end
@@ -42,7 +41,7 @@ addEventHandler('onClientPlayerVehicleEnter', localPlayer, newVehicle)
 function noVehicle()
     removeEventHandler('onClientVehicleExplode', localVehicle, noVehicle)
     removeEventHandler('onClientElementDestroy', localVehicle, noVehicle)
-    removeEventHandler('onClientVehicleStartExit', localVehicle, exitVehicle)
+    removeEventHandler('onClientVehicleStartExit', localVehicle, noVehicle)
     if enabled then
         toggleGhost(false)
     end
@@ -53,6 +52,7 @@ function resourceStart()
     if localPlayer.vehicle then
         newVehicle(localPlayer.vehicle, localPlayer.vehicleSeat)
     end
+    bindKey(GHOST_KEY, 'both', handleGhostKey)
 end
 addEventHandler('onClientResourceStart', resourceRoot, resourceStart)
 
