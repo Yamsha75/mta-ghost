@@ -15,6 +15,7 @@ function toggleGhost(bool)
         removeEventHandler('onClientRender', root, updateZ)
     end
     triggerServerEvent('onClientToggleGhost', localVehicle)
+    setCameraClip(not enabled, not enabled)
 end
 
 function handleGhostKey(key, keyState)
