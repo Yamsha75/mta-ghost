@@ -1,6 +1,6 @@
 # mta-ghost
 
-A simple script for [Multi Theft Auto: San Andreas](mtasa.com), which enables players to
+A simple script for [Multi Theft Auto: San Andreas](https:\\mtasa.com), which enables players to
 temporarily disable their vehicle collisions to pass through other vehicles, objects and so on.
 
 ## Use
